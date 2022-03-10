@@ -2,8 +2,7 @@
 setxkbmap -layout us -option ctrl:nocaps
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/akul/.oh-my-zsh"
-
+export ZSH="/Users/akul/.oh-my-zsh"
 # Set name of thetheme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -41,7 +40,7 @@ ZSH_THEME="robbyrussell"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="false"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # Caution: this setting can cause issues with multiline prompts (zsh 5.7.1 and newer seem to work)
@@ -69,7 +68,7 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-autosuggestions z git)
+plugins=(z git)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -101,6 +100,7 @@ source $ZSH/oh-my-zsh.sh
 
 bindkey -v 
 bindkey -s jk '\e' 
+bindkey '^R' history-incremental-search-backward
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -116,3 +116,27 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+ctags=/usr/local/bin/ctags
+
+#g8
+alias gu="g8 update"
+alias gs="g8 status"
+alias gf="g8 files"
+alias gc="g8 client"
+alias gsy="g8 sync"
+
+function df() {git diff "$1" `find  ~/repo/code8/ -iname "$2"`}
+
+#Reduces any files in the directory that are over 100mb
+function reduce() {
+    for f in *
+    do
+        if [ -n "$(find $f -prune -size +100000000c)" ]; then
+            command="ffmpeg -i ${f} -vf "scale=iw/2:ih/2" ${f}_reduced.mp4"
+            echo $command
+            eval $command
+        fi
+    done
+}
+
+alias ng8=$HOME/repo/code8/bazel-bin/apps/client/g8/g8

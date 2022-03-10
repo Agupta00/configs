@@ -1,3 +1,5 @@
+source ~/.vim/bundle/cscope_maps.vim
+
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -8,24 +10,13 @@ call vundle#begin()
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'Valloric/YouCompleteMe'
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" Git plugin not hosted on GitHub
-Plugin 'git://git.wincent.com/command-t.git'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
-
+"Plugin 'octol/vim-cpp-enhanced-highlight'
+"Plugin 'VundleVim/Vundle.vim'
+"Plugin 'Valloric/YouCompleteMe'
+"Plugin 'rhysd/clever-f.vim'
+"let g:clever_f_smart_case = 1
+"let g:clever_f_mark_direct = 1
+"let g:clever_f_chars_match_any_signs = 1
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -41,7 +32,7 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 "
-inoremap jk <ESC>
+
 let mapleader = " "
 syntax on
 set encoding=utf-8
@@ -58,3 +49,23 @@ set autoindent
 let g:gruvbox_contrast_dark='medium'
 set bg=dark
 colorscheme gruvbox
+
+autocmd BufNewFile,BufRead *.* set syntax=c 
+set tags=tags
+
+inoremap jk <ESC>
+
+nnoremap ) {
+nnoremap ( }
+xnoremap ) {
+xnoremap ( }
+
+"for delete till 'char'
+map s t
+
+" ctrl+c to toggle highlight.
+let hlstate=0
+nnoremap <c-c> :if (hlstate%2 == 0) \| nohlsearch \| else \| set hlsearch \| endif \| let hlstate=hlstate+1<cr>
+
+au BufRead,BufNewFile *.note setf note
+
