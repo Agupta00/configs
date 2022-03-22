@@ -1,4 +1,4 @@
-source ~/.vim/bundle/cscope_maps.vim
+"source ~/.vim/bundle/cscope_maps.vim
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -10,8 +10,9 @@ call vundle#begin()
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'morhetz/gruvbox'
 "Plugin 'octol/vim-cpp-enhanced-highlight'
-"Plugin 'VundleVim/Vundle.vim'
 "Plugin 'Valloric/YouCompleteMe'
 "Plugin 'rhysd/clever-f.vim'
 "let g:clever_f_smart_case = 1
